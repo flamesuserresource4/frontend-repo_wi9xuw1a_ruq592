@@ -1,14 +1,15 @@
 import { Mail, Phone, MapPin, Github } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 text-white">
+    <footer className="relative bg-slate-950 text-white">
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="grid gap-6 md:grid-cols-3">
-          <div>
+          <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h3 className="text-lg font-semibold">Let's build something great</h3>
             <p className="mt-2 text-sm text-white/70">Open to internships, freelance, and collaborations in Android, AI/ML, and full‑stack.</p>
-          </div>
+          </motion.div>
           <div className="space-y-2 text-sm">
             <a href="mailto:askibrahim06@gmail.com" className="flex items-center gap-2 text-white/80 hover:text-white">
               <Mail className="h-4 w-4 text-cyan-300" /> askibrahim06@gmail.com
@@ -23,9 +24,9 @@ export default function Footer() {
               <Github className="h-4 w-4 text-cyan-300" /> github.com/Musafir02
             </a>
           </div>
-          <div className="text-sm text-white/60 md:text-right">
+          <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-sm text-white/60 md:text-right">
             <p>© {new Date().getFullYear()} Ibrahim A. R. Shaikh. All rights reserved.</p>
-          </div>
+          </motion.div>
         </div>
       </div>
     </footer>

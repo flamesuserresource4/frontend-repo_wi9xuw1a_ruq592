@@ -1,4 +1,6 @@
 import { ExternalLink, Sparkles, Bot, Store, MessageSquare } from 'lucide-react';
+import { Section } from './Sections';
+import { motion } from 'framer-motion';
 
 const projects = [
   {
@@ -39,23 +41,19 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section className="bg-slate-950 text-white">
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="text-2xl font-semibold">Projects</h2>
-        <p className="mt-2 text-white/70">Selected work across Android, AI/ML, and full‑stack development.</p>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => (
-            <ProjectCard key={p.title} {...p} />
-          ))}
-        </div>
+    <Section title="Projects" subtitle="Selected work across Android, AI/ML, and full‑stack development.">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {projects.map((p) => (
+          <ProjectCard key={p.title} {...p} />
+        ))}
       </div>
-    </section>
+    </Section>
   );
 }
 
 function ProjectCard({ title, stack, description, icon: Icon }) {
   return (
-    <div className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-5 transition hover:bg-white/10">
+    <motion.div whileHover={{ y: -6 }} className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-5 transition">
       <div className="flex items-center gap-3">
         <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white/10">
           {Icon ? <Icon className="h-5 w-5 text-cyan-300" /> : <Sparkles className="h-5 w-5 text-cyan-300" />}
@@ -65,10 +63,13 @@ function ProjectCard({ title, stack, description, icon: Icon }) {
       <p className="mt-3 text-sm text-white/75">{description}</p>
       <div className="mt-4 flex flex-wrap gap-2">
         {stack.map((s) => (
-          <span key={s} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/80">{s}</span>
+          <motion.span key={s} whileHover={{ scale: 1.05 }} className="rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-xs text-white/80">{s}</motion.span>
         ))}
       </div>
       <div className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-cyan-500/10 blur-2xl transition-opacity group-hover:opacity-100" />
-    </div>
+      <motion.a whileHover={{ x: 2 }} href="#" className="mt-4 inline-flex items-center gap-2 text-sm text-cyan-300/80 hover:text-cyan-300">
+        View details <ExternalLink className="h-4 w-4" />
+      </motion.a>
+    </motion.div>
   );
 }
